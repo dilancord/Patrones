@@ -1,0 +1,97 @@
+Explicación del Diagrama de Clases
+ConfigurationManager (Singleton)
+Esta es la clase central del sistema. Representa un Singleton, lo que significa que solo existe una única instancia de ella durante la ejecución del programa. En el diagrama, las flechas que apuntan hacia esta clase desde WelcomeScreen, ConnectionSimulator y Main indican que todas ellas utilizan esa única instancia (1).
+
+Atributos privados (-):
+
+_instance: mantiene la instancia única del Singleton.
+
+_config: diccionario que almacena la configuración.
+
+_config_file: ruta al archivo de configuración (config.json).
+
+Métodos públicos (+) y privados (-):
+
+__new__() asegura la implementación del patrón Singleton.
+
+_load_configuration() y _load_default_configuration() cargan la configuración desde archivo o valores por defecto.
+
+get_property() y set_property() permiten acceder y modificar configuraciones.
+
+save_configuration() guarda los cambios en el archivo JSON.
+
+print_configuration() muestra la configuración actual.
+
+WelcomeScreen
+Depende del ConfigurationManager (relación de uso). Utiliza la configuración para mostrar opciones como:
+
+Idioma (language)
+
+Formato de hora (timeFormat)
+
+Tema (theme)
+
+El método principal es display(), encargado de mostrar la información relevante al usuario.
+
+ConnectionSimulator
+También depende del ConfigurationManager. Accede a los siguientes parámetros:
+
+maxConnections
+
+enableLogs
+
+defaultCurrency
+
+Su método simulate() ejecuta una simulación de conexión usando esos valores de configuración.
+
+Main
+Clase principal que orquesta toda la aplicación. Se encarga de:
+
+Obtener la instancia única del ConfigurationManager.
+
+Crear las instancias de WelcomeScreen y ConnectionSimulator.
+
+Ejecutar el menú interactivo.
+
+Permitir la modificación de configuraciones desde consola.
+
+Requisitos Implementados
+Lectura de configuración al iniciar:
+ConfigurationManager carga automáticamente config.json. Si el archivo no existe o es inválido, se cargan valores por defecto y se guarda un nuevo archivo.
+
+Modificación de configuración desde consola:
+A través del menú interactivo es posible modificar cualquier valor del archivo de configuración, que luego se guarda automáticamente.
+
+Pantallas implementadas:
+
+WelcomeScreen: usa language, timeFormat y theme.
+
+ConnectionSimulator: usa maxConnections, enableLogs y defaultCurrency.
+
+Menú principal en consola:
+Proporcionado por main.py, permite interactuar con las funcionalidades del sistema.
+
+Cómo Ejecutar el Proyecto
+Requisitos
+Python 3.6 o superior.
+
+No se requieren librerías externas.
+
+Pasos en PyCharm
+Cree un nuevo proyecto tipo Pure Python.
+
+Dentro de la raíz del proyecto, cree una carpeta llamada src.
+
+Copie los siguientes archivos .py dentro de src:
+
+configuration_manager.py
+
+welcome_screen.py
+
+connection_simulator.py
+
+main.py
+
+Cree un archivo config.json en la raíz del proyecto (al mismo nivel que src) y pegue el contenido JSON correspondiente.
+
+Abra main.py en el editor, haga clic derecho sobre él y seleccione Run 'main' para ejecutar el programa.

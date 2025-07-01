@@ -3,7 +3,7 @@ from tkinter import ttk, messagebox
 # patrón Decorator Subguey
 
 
-#Objeto o como Interface que define la estructura minina del componente
+#Objeto o como Interface que define la estructura minina del componente seria Icomponent
 class ISandwich:
     def obtener_descripcion(self):
         pass
@@ -15,7 +15,7 @@ class ISandwich:
 
 
 
-# Implementación básica de sándwich
+# Implementación básica de sándwich, que seria ConcretComponent
 class SandwichBasico(ISandwich):
     def __init__(self, tipo_sandwich, tamano):
         self.tipo = tipo_sandwich
